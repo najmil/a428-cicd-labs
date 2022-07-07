@@ -1,16 +1,10 @@
 node {
-    docker.image('node:lts-bullseye-slim').withRun('-p 3000:3000')
-    stages{
-        stage('Build') {
-            steps {
-                sh 'npm install'
-            }
-        }
-        stage('Test') {
-            steps {
-                sh './jenkins/scripts/test.sh'
-            }
-        }
+    stage('Build') {
+        sh 'npm install'
+    }    
+    
+    stage('Test') {
+        sh './jenkins/scripts/test.sh'
     }
 }
 
