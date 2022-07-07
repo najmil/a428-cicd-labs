@@ -8,8 +8,6 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                sh 'npm config set registry http://registry.npmjs.org/'
-                sh 'npm config set strict-ssl false'
                 sh 'npm install'
             }
         }
