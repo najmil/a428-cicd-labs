@@ -1,18 +1,3 @@
-node {
-    tools {nodejs "node"}
-    stages{
-        stage('Build') {
-            sh 'npm install'
-        }    
-        
-        stage('Test') {
-            sh './jenkins/scripts/test.sh'
-        }
-    }
-}
-
-
-/*
 pipeline {
     agent {
         docker {
@@ -32,4 +17,4 @@ pipeline {
             }
         }
     }
-}*/
+}
