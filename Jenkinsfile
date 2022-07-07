@@ -1,5 +1,6 @@
 node {
-    docker.image('node:lts-bullseye-slim').withRun('-p 3000:3000').inside {
+    docker.image('node:lts-bullseye-slim').withRun('-p 3000:3000')
+    stages{
         stage('Build') {
             steps {
                 sh 'npm install'
