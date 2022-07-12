@@ -16,12 +16,16 @@ pipeline {
                 sh './jenkins/scripts/test.sh'
             }
         }
-        stage('Deliver') { 
+        stage('Approval') {
+            steps {
+                input "Deploy?"
+            }
+        }
+        stage('Deploy') { 
             steps {
                 sh './jenkins/scripts/deliver.sh' 
-                echo 'deploy successful'
-                //input message: 'Finished using the web site? (Click "Proceed" to continue)' 
-                //sh './jenkins/scripts/kill.sh' 
+                input message: 'Finished using the web site? (Click "Proceed" to continue)' 
+                sh './jenkins/scripts/kill.sh' 
             }
         }
     }
