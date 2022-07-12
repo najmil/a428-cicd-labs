@@ -2,7 +2,7 @@ pipeline {
     agent {
         docker {
             image 'node:lts-buster-slim'
-            args '-p 3000:3000'
+            args '-p 8000:8000'
         }
     }
     stages {
@@ -14,11 +14,6 @@ pipeline {
         stage('Test') {
             steps {
                 sh './jenkins/scripts/test.sh'
-            }
-        }
-        stage('Approval') {
-            steps {
-                input "Deploy?"
             }
         }
         stage('Deploy') { 
