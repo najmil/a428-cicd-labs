@@ -9,7 +9,6 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'npm install'
-                dependencyCheck additionalArguments: 'scan="/home/Project/Belajar_Implementasi_CICD/Jenkins/a428-cicd-labs" --format HTML', odcInstallation: 'DC'
             }
         }
         stage('Test') {
