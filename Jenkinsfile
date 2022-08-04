@@ -26,12 +26,13 @@ pipeline {
             steps {
                 sh './jenkins/scripts/deliver.sh'
                 //input message: 'Sudah selesai menggunakan React App? (Klik "Proceed" untuk mengakhiri)' 
-                sleep(time: 1, unit: 'MINUTES')
+                sleep(time: 2, unit: 'SECONDS')
                 sh './jenkins/scripts/kill.sh'
             }
         }
         stage('Production') {
             steps {
+                sh 'curl https://cli-assets.heroku.com/install.sh | sh'
                 sh 'heroku git:remote -a my-react-app123'
                 sh 'git push heroku main'
             }
