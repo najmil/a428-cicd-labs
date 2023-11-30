@@ -19,6 +19,29 @@ pipeline {
                 sh './jenkins/scripts/test.sh'
             }
         }
+        stage('Deploy') {
+            steps {
+                sh './jenkins/scripts/deploy.sh'
+            }
+            post {
+                success {
+                    echo 'Application deployed successfully. Waiting for 1 minute...'
+                    sleep time: 1, unit: 'MINUTES'
+                }
+            }
+        }
+        stage('Manual Approval') {
+            steps {
+                script {
+                    def userInput = input message: 'Lanjutkan ke tahap Deploy?', parameters: [booleanParam(defaultValue: true, description: 'Pilih true untuk melanjutkan atau false untuk menghentikan', name: 'Proceed')]
+                    if (userInput == true) {
+                        echo 'Melanjutkan ke tahap Deploy...'
+                    } else {
+                        error 'Pipeline dihentikan oleh pengguna.'
+                    }
+                }
+            }
+        }
         stage('Deliver') {
             steps {
                 sh './jenkins/scripts/deliver.sh'
