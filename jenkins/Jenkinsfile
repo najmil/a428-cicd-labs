@@ -27,8 +27,8 @@ pipeline {
             }
             post {
                 success {
-                    echo 'Application deployed successfully. Waiting for 1 minute...'
-                    sleep time: 60, unit: 'SECONDS'  // Adjusted sleep time to 1 minute
+                    echo 'Application deployed successfully. Please wait for a minute...'
+                    sleep time: 60, unit: 'SECONDS'
                 }
             }
         }
